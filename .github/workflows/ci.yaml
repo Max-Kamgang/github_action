@@ -25,6 +25,7 @@ jobs:
 
      
     build_job:
+        needs: setup_jobs
         runs-on: ubuntu-latest
        
         steps:
@@ -32,6 +33,7 @@ jobs:
               run: echo "Hello"
 
     deploy_job:
+        needs: build_job
         runs-on: macos-latest
         steps:
          - run: echo "Hello Mac"
