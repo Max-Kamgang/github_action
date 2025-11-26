@@ -31,6 +31,10 @@ jobs:
         steps:
             - name: Display Hello
               run: echo "Hello"
+            - name: Display Github-action.txt
+              run: |
+               cat githubaction.txt
+               ls -la
 
     deploy_job:
         needs: build_job
