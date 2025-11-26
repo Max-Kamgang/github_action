@@ -1,57 +1,45 @@
-name: Demo Pipeline 
-
+name: Demo pipeline 
 on:
-    push:
-        branches:
-        - main
-    pull_request:
-        branches: [main , dev ]
-    schedule: 
-    - cron: "*/1 * * * *"  # Runs every Sunday at midnight
-
+  push:
+    branches: 
+      - main
+      - dev
+  pull_request:
+    branches: [main, dev]
+  # schedule:
+  #   - cron:  "*/1 * * * *"
 jobs:
-    setup_jobs:
-        runs-on: ubuntu-latest #macos-latest , Windows-latest, 
-        steps: 
-            - name: Checkout Repository
-              uses: actions/checkout@v3 
-            
-            - name: Create File
-              run: touch githubaction.txt
-            - name: Print Hello World
-              run:  echo "Hello, World!"
-            - name: Display README 
-              run: cat README.
-            - name: Upload my artifact
-              uses: actions/upload-artifact@v3
-              with:
-                  name: myfile
-                  path: githubaction.txt
-
-     
-    build_job:
-        
-        needs: setup_jobs
-        runs-on: ubuntu-latest
-       
-        steps:
-            - name: Display Hello
-              run: echo "Hello"
-            - name: Download Artifact
-            
-              uses: actions/download-artifact@v4
-
-              with:
-               path: githubaction.txt
-
-                 
-            - name: Display Github-action.txt
-              run: |
-               cat githubaction.txt
-               ls -la
-
-    deploy_job:
-        needs: build_job
-        runs-on: macos-latest
-        steps:
-         - run: echo "Hello Mac"
+  setup_job:
+    runs-on: ubuntu-latest  # macos-latest , windows-latest 
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: create file 
+        run: |
+          touch github-action.txt
+          echo from first job > github-action.txt
+          ls -la
+          echo Hello world
+          cat README.md
+      - name: upload my artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-file
+          path: github-action.txt
+  build_job:
+    needs: 
+      - setup_job
+    runs-on: ubuntu-latest
+    steps:
+      - name: display hello
+        run: echo hello 
+      - uses: actions/download-artifact@v4
+        with:
+          path: github-action.txt
+      - name: Display github-action.txt
+        run: cat github-action.txt
+  deploy_job:
+    needs: build_job
+    runs-on: macos-latest
+    steps:
+      - run: echo hellow mac
