@@ -13,4 +13,34 @@ jobs:
               run: echo "Max Brian is So Powerful"
             - name: Definnition Of my Goals 
               run: echo "My Biggest Dream is to Make my Siblings and my parents proud of me and make them happy"
-         
+    execute:
+        needs:
+            - build
+        runs-on: ubuntu-latest
+        steps:
+            - name: First of all
+              run: echo "I will Extend my Limits to Infinity"
+            - name: Secondly 
+              run: echo "If i wanrt to buy things without looking at the price 
+                         i gotta work without looking at the time"
+            - name: The Next Step 
+              run: echo "I have to Choose a specific Domain in The IT Field ans become an expert"
+            - name: My Final Goal 
+              run: echo "To become a Successful Entrepreneur and a Tech Influencer"
+
+    deploy:
+        needs:
+            - execute
+        runs-on: ubuntu-latest
+        steps:
+            - name: Achieved 
+              run: echo "Once That Goal is achived, I will Help people around to become more Successful" 
+    
+
+    develop:
+        needs: 
+            - deploy
+        runs-on: ubuntu-latest
+        steps:
+            - name: Keep Going 
+              run: echo "Success is a Journey not a Destination, So keep Moving Forward"                   
