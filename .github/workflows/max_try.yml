@@ -1,0 +1,16 @@
+name: Max_Try_pipeline
+on:
+    push:
+        branches: [main,master]
+
+jobs: 
+    build:
+        runs-on: ubuntu-latest 
+        steps:
+            - name: Initialisation of The Environment
+              run: echo "This is the first Pipeline runned By Mr Brain"
+            - name: Definition of The Variables  
+              run: echo "Max Brian is So Powerful"
+            - name: Definnition Of my Goals 
+              run: echo "My Biggest Dream is to Make my Siblings and my parents proud of me and make them happy"
+         
