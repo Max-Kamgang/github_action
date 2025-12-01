@@ -43,4 +43,4 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Keep Going 
-              run: echo "Success is a Journey not a Destination, So keep Moving Forward"                   
+              run: echo "Success is  Journey not a Destination, So keep Moving Forward"                   
